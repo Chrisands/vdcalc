@@ -28,5 +28,10 @@
     "pedantic": false,
     "smartLists": true,
     "langPrefix": "language-"
+  },
+  "sync": {
+    "id": "5a2b9eaa80492d1ca22b3351",
+    "name": "Chrisands/vdcalc",
+    "useImdoneioForPriority": true
   }
 }
