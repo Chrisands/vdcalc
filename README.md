@@ -1,8 +1,10 @@
-#TODO:0 Count order in form:
-#TODO:10 With one input (like 250\*2)
-#TODO:20 With two inputs (like 250 | 2)
-#TODO:30 Show orders sum, percent and courier fee
-#TODO:40 Login thought Google
-#TODO:50 Contains list of all café with stipulations
-#TODO:60 Contains menu of each café
-#TODO:70 Possibility add products from interactive menu in order
+### TODO:
+
+* [ ] Count order in form:
+  * [ ] With one input (like 250\*2)
+  * [x] With two inputs (like 250 | 2)
+* [ ] Show orders sum, percent and courier fee
+* [ ] Login thought Google
+* [ ] Contains list of all café with stipulations
+* [ ] Contains menu of each café
+* [ ] Possibility add products from interactive menu in order

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import Form from './Form';
+import React, { Component } from 'react'
+import Array from './Array'
 
 class App extends Component {
   render() {
@@ -8,10 +8,11 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">VD Calculator</h1>
         </header>
-        <Form />
+
+        <Array />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

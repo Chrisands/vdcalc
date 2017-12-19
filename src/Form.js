@@ -1,36 +1,60 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class Form extends Component {
   constructor(props) {
-    super(props);
-    this.state = { value: '', amount: '1' };
+    super(props)
+    this.state = { cost: '', amount: '', product: '' }
 
-    this.handleChangeValue = this.handleChangeValue.bind(this);
-    this.handleChangeAmount = this.handleChangeAmount.bind(this);
+    this.createForm = this.createForm.bind(this)
+
+    // this.handleChangeCost = this.handleChangeCost.bind(this)
+    // this.handleChangeAmount = this.handleChangeAmount.bind(this)
   }
 
-  handleChangeValue(event) {
-    this.setState({ value: event.target.value });
-    console.log(`Value: ${this.state.value}`);
-  }
-  handleChangeAmount(event) {
-    this.setState({ amount: event.target.value });
-    console.log(`Amount: ${this.state.amount}`);
+  // handleChangeCost(e) {
+  //   // e = event
+  //   this.setState({ cost: e.target.value })
+  //   console.log(e.target.value)
+  // }
+
+  // handleChangeAmount(e) {
+  //   this.setState({
+  //     form: {
+  //       amount: e.target.value
+  //     }
+  //   })
+  // }
+
+  createForm(item) {
+    return (
+      <li key={item.key}>
+        <form>
+          <label>
+            <input
+              type="number"
+              onChange={this.handleChangeCost}
+              defaultValue={item.cost}
+            />
+          </label>
+          <label>
+            <input
+              type="number"
+              onChange={console.log(item.amount)}
+              defaultValue={item.amount}
+            />
+          </label>
+          <label>{item.amount}</label>
+        </form>
+      </li>
+    )
   }
 
   render() {
-    return (
-      <form>
-        <label>
-          <input type="number" value={this.state.value} onChange={this.handleChangeValue} />
-        </label>
-        <label>
-          <input type="number" value={this.state.amount} onChange={this.handleChangeAmount} />
-        </label>
-        <label>{this.state.value * this.state.amount}</label>
-      </form>
-    );
+    const formEntries = this.props.entries
+    const listItems = formEntries.map(this.createForm)
+
+    return <ul>{listItems}</ul>
   }
 }
 
-export default Form;
+export default Form
