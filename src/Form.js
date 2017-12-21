@@ -27,7 +27,7 @@ class Form extends Component {
 
   createForm(item) {
     return (
-      <li onInput={this.handleClick} onClick={this.handleClick} key={item.key}>
+      <li onFocus={this.handleClick} key={item.key}>
         <form>
           <label>
             <input
