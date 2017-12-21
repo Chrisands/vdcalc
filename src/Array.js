@@ -67,7 +67,7 @@ class Array extends Component {
 
     if (this.state.count > 1) {
       itemForm.pop()
-      this.setState({ count: counter })
+      this.setState({ count: counter, currentKey: 1 })
     }
   }
 
@@ -75,7 +75,6 @@ class Array extends Component {
     // updates product when something changes
     const { form, currentKey } = this.state
     const newProduct = form[currentKey - 1].cost * form[currentKey - 1].amount
-
     const nextForm = form.map((f) => {
       if (f.key !== currentKey) {
         return f
