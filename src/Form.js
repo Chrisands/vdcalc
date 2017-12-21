@@ -37,6 +37,7 @@ class Form extends Component {
           <label>
             <input
               type="number"
+              style={{ width: 50 }}
               id={item.key}
               value={item.amount}
               onChange={this.onAmountChange}
