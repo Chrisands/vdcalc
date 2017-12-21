@@ -8,7 +8,7 @@ class App extends Component {
     this.state = {
       count: 1,
       currentKey: 1,
-      form: [{ cost: '', amount: '1', product: '0', key: 1 }]
+      form: [{ cost: '', amount: '1', product: '', key: 1 }]
     }
 
     this.handleItemAdd = this.handleItemAdd.bind(this)
@@ -57,7 +57,7 @@ class App extends Component {
     const itemForm = this.state.form
 
     if (this.state.count < 25) {
-      itemForm.push({ cost: '', amount: '1', product: '0', key: counter })
+      itemForm.push({ cost: '', amount: '1', product: '', key: counter })
       this.setState({ count: counter })
     }
   }
