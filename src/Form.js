@@ -11,12 +11,10 @@ class Form extends Component {
   }
 
   onCostChange(e) {
-    // e = event
     this.props.onCostValueChange(e.target.value)
   }
 
   onAmountChange(e) {
-    // e = event
     this.props.onAmountValueChange(e.target.value)
   }
 

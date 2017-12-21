@@ -7,7 +7,7 @@ class Array extends Component {
     this.state = {
       count: 1,
       currentKey: 1,
-      form: [{ cost: '', amount: '1', product: '', key: 1 }]
+      form: [{ cost: '', amount: '1', product: '0', key: 1 }]
     }
 
     this.handleItemAdd = this.handleItemAdd.bind(this)
@@ -35,6 +35,7 @@ class Array extends Component {
 
     this.setState({ form: nextForm })
   }
+
   handleAmountChange(e) {
     const { form, currentKey } = this.state
     const nextForm = form.map((f) => {
@@ -50,29 +51,12 @@ class Array extends Component {
     this.setState({ form: nextForm })
   }
 
-  handleProductChange(e) {
-    const { form, currentKey } = this.state
-
-    // this.state.form[this.state.currentKey - 1].cost
-    const nextForm = form.map((f) => {
-      if (f.key !== currentKey) {
-        return f
-      }
-      return {
-        ...f,
-        product: e
-      }
-    })
-
-    this.setState({ form: nextForm })
-  }
-
   handleItemAdd(e) {
     const counter = this.state.count + 1
     const itemForm = this.state.form
 
     if (this.state.count < 25) {
-      itemForm.push({ cost: '', amount: '1', key: counter })
+      itemForm.push({ cost: '', amount: '1', product: '0', key: counter })
       this.setState({ count: counter })
     }
   }
@@ -87,13 +71,32 @@ class Array extends Component {
     }
   }
 
+  componentDidUpdate(nextProps, nextState) {
+    // updates product when something changes
+    const { form, currentKey } = this.state
+    const newProduct = form[currentKey - 1].cost * form[currentKey - 1].amount
+
+    const nextForm = form.map((f) => {
+      if (f.key !== currentKey) {
+        return f
+      }
+      return {
+        ...f,
+        product: newProduct
+      }
+    })
+
+    if (newProduct !== form[currentKey - 1].product) {
+      this.setState({ form: nextForm })
+    }
+  }
+
   render() {
     return (
       <div>
         <Form
           entries={this.state.form}
           getKey={this.currentKey}
-          onValueChange={this.handleProductChange}
           onCostValueChange={this.handleCostChange}
           onAmountValueChange={this.handleAmountChange}
         />
