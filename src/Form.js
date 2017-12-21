@@ -22,7 +22,6 @@ class Form extends Component {
 
   handleClick(e) {
     this.props.getKey(e.target.getAttribute('id'))
-    // console.log(e.target.getAttribute('id'))
   }
 
   createForm(item) {
@@ -45,7 +44,7 @@ class Form extends Component {
               onChange={this.onAmountChange}
             />
           </label>
-          <label>{item.amount}</label>
+          <label>{item.product}</label>
         </form>
       </li>
     )
