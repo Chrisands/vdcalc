@@ -5,19 +5,24 @@ class Statictic extends Component {
     super(props)
     this.state = {
       orderSum: 0,
-      discount: 10
+      productSum: 0,
+      discount: '',
+      deliveryCost: 0
     }
 
-    this.getOrderSum = this.getOrderSum.bind(this)
-    this.currierSum = this.currierSum.bind(this)
+    this.orderSum = this.orderSum.bind(this)
+    this.productSum = this.productSum.bind(this)
+    this.deliveryCost = this.deliveryCost.bind(this)
     this.discount = this.discount.bind(this)
     this.discountChange = this.discountChange.bind(this)
   }
 
-  getOrderSum(props) {
+  orderSum() {}
+
+  productSum(props) {
     const formArray = props.formArray
     const length = props.formState.count
-    const orderSum = function(formArray, length) {
+    const productSum = function(formArray, length) {
       let sum = 0
       for (let i = 0; i < length; i++) {
         sum += formArray[i].product
@@ -25,10 +30,32 @@ class Statictic extends Component {
       return sum
     }
 
-    this.setState({ orderSum: orderSum(formArray, length) })
+    this.setState({ productSum: productSum(formArray, length) })
   }
 
-  currierSum() {}
+  deliveryCost() {
+    return (
+      <span>
+        <input
+          type="number"
+          list="deliveryCost"
+          value={this.state.deliveryCost}
+          onChange={this.deliveryCostChange}
+        />
+        <datalist id="deliveryCost">
+          <option value="200" />
+          <option value="250" />
+          <option value="300" />
+          <option value="350" />
+          <option value="500" />
+        </datalist>
+      </span>
+    )
+  }
+
+  deliveryCostChange(e) {
+    this.setState({ deliveryCost: +e.target.value })
+  }
 
   discount() {
     return (
@@ -59,7 +86,7 @@ class Statictic extends Component {
   deliveryCost() {}
 
   componentWillReceiveProps(nextProps) {
-    this.getOrderSum(nextProps)
+    this.productSum(nextProps)
   }
 
   render() {
@@ -68,25 +95,14 @@ class Statictic extends Component {
         <button type="button" onClick={this.currierSum}>
           console
         </button>
-        <div>
-          <div>Order sum: {this.state.orderSum}</div>
-          <div>
-            Currier sum: {this.state.currierSum}, Discount:{this.discount()}
-          </div>
-          <div>
-            Order sum without delivery cost: {this.state.orderSumWithoutDC},
-            Delivery Cost: <input />
-            {/* <input type="number" list="deliveryCost" style={{ width: 50 }} />
-              <datalist id="deliveryCost">
-              <option value="0" />
-              <option value="250" />
-              <option value="300" />
-              <option value="350" />
-              <option value="500" />
-            </datalist> */}
-          </div>
-          <div>profit, input checkbox (MO)</div>
-        </div>
+        <ul>
+          <li>Order sum: {this.state.orderSum}</li>
+          <li>Currier sum: {this.state.currierSum}</li>
+          <li>Discount: {this.discount()}</li>
+          <li>Product sum: {this.state.productSum}</li>
+          <li>Delivery cost: {this.deliveryCost()}</li>
+          <li>Profit: </li>
+        </ul>
       </div>
     )
   }
