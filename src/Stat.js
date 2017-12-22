@@ -81,10 +81,6 @@ class Statictic extends Component {
     this.setState({ discount: e.target.value })
   }
 
-  orderSumWithoutDC() {}
-
-  deliveryCost() {}
-
   componentWillReceiveProps(nextProps) {
     this.productSum(nextProps)
   }
