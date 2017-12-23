@@ -148,14 +148,38 @@ class Statictic extends Component {
     return (
       <div>
         <ul>
-          <li>Сумма заказа: {this.state.orderSum}</li>
-          <li>Кафе: {this.state.currierSum}</li>
-          <li>Currier fee: {this.state.currierFee}</li>
-          <li>Скидка: {this.discount()}</li>
-          <li>Стоимость блюд(а): {this.state.productSum}</li>
-          <li>Стоимость доставки: {this.deliveryCost()}</li>
-          <li>Прибыль: {this.state.profit}</li>
-          <li>Fee tax: {this.feeTax()}</li>
+          <li>
+            <span>Сумма заказа: </span>
+            <span>{this.state.orderSum}</span>
+          </li>
+          <li>
+            <span>Кафе: </span>
+            <span>{this.state.currierSum}</span>
+          </li>
+          <li>
+            <span>Гонорар курьера: </span>
+            <span>{this.state.currierFee}</span>
+          </li>
+          <li>
+            <span>Скидка: </span>
+            <span>{this.discount()}</span>
+          </li>
+          <li>
+            <span>Стоимость блюд(а): </span>
+            <span>{this.state.productSum}</span>
+          </li>
+          <li>
+            <span>Стоимость доставки: </span>
+            <span>{this.deliveryCost()}</span>
+          </li>
+          <li>
+            <span>Прибыль: </span>
+            <span>{this.state.profit}</span>
+          </li>
+          <li>
+            <span>Доплата курьеру: </span>
+            <span>{this.feeTax()}</span>
+          </li>
         </ul>
       </div>
     )
