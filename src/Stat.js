@@ -6,31 +6,31 @@ class Statictic extends Component {
     this.state = {
       orderSum: 0,
       productSum: 0,
-      discount: '',
+      discount: '10',
       deliveryCost: 0
     }
 
     this.orderSum = this.orderSum.bind(this)
     this.productSum = this.productSum.bind(this)
     this.deliveryCost = this.deliveryCost.bind(this)
+    this.deliveryCostChange = this.deliveryCostChange.bind(this)
     this.discount = this.discount.bind(this)
     this.discountChange = this.discountChange.bind(this)
+    this.forceUpdateHandler = this.forceUpdateHandler.bind(this)
   }
 
-  orderSum() {}
+  orderSum() {
+    const newOrderSum = +this.state.productSum + +this.state.deliveryCost
+    this.setState({ orderSum: newOrderSum })
+  }
 
-  productSum(props) {
-    const formArray = props.formArray
-    const length = props.formState.count
-    const productSum = function(formArray, length) {
-      let sum = 0
-      for (let i = 0; i < length; i++) {
-        sum += formArray[i].product
-      }
-      return sum
-    }
-
-    this.setState({ productSum: productSum(formArray, length) })
+  currierSum() {
+    const discount = (100 - this.state.discount) * 0.01
+    const profit = this.state.discount * 0.01
+    this.setState({
+      currierSum: this.state.productSum * discount,
+      profit: this.state.productSum * profit
+    })
   }
 
   deliveryCost() {
@@ -54,7 +54,23 @@ class Statictic extends Component {
   }
 
   deliveryCostChange(e) {
-    this.setState({ deliveryCost: +e.target.value })
+    this.setState({ deliveryCost: e.target.value })
+    this.forceUpdateHandler()
+  }
+
+  productSum(props) {
+    const formArray = props.formArray
+    const length = props.formState.count
+    const productSum = function(formArray, length) {
+      let sum = 0
+      for (let i = 0; i < length; i++) {
+        sum += formArray[i].product
+      }
+      return sum
+    }
+
+    this.setState({ productSum: productSum(formArray, length) })
+    this.forceUpdateHandler()
   }
 
   discount() {
@@ -81,23 +97,32 @@ class Statictic extends Component {
     this.setState({ discount: e.target.value })
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState !== this.state) {
+      return true
+    }
+    return false
+  }
+
   componentWillReceiveProps(nextProps) {
     this.productSum(nextProps)
+  }
+
+  forceUpdateHandler() {
+    this.forceUpdate(this.orderSum)
+    this.forceUpdate(this.currierSum)
   }
 
   render() {
     return (
       <div>
-        <button type="button" onClick={this.currierSum}>
-          console
-        </button>
         <ul>
           <li>Order sum: {this.state.orderSum}</li>
           <li>Currier sum: {this.state.currierSum}</li>
           <li>Discount: {this.discount()}</li>
           <li>Product sum: {this.state.productSum}</li>
           <li>Delivery cost: {this.deliveryCost()}</li>
-          <li>Profit: </li>
+          <li>Profit: {this.state.profit}</li>
         </ul>
       </div>
     )
