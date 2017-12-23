@@ -6,8 +6,12 @@ class Statictic extends Component {
     this.state = {
       orderSum: 0,
       productSum: 0,
-      discount: '10',
-      deliveryCost: 0
+      discount: 10,
+      deliveryCost: 0,
+      profit: 0,
+      currierSum: 0,
+      currierFee: 0,
+      feeTax: 0
     }
 
     this.orderSum = this.orderSum.bind(this)
@@ -17,20 +21,30 @@ class Statictic extends Component {
     this.discount = this.discount.bind(this)
     this.discountChange = this.discountChange.bind(this)
     this.forceUpdateHandler = this.forceUpdateHandler.bind(this)
+    this.currierFee = this.currierFee.bind(this)
+    this.feeTax = this.feeTax.bind(this)
+    this.feeTaxChange = this.feeTaxChange.bind(this)
   }
 
   orderSum() {
     const newOrderSum = +this.state.productSum + +this.state.deliveryCost
     this.setState({ orderSum: newOrderSum })
+    this.forceUpdate(this.currierFee)
   }
 
   currierSum() {
     const discount = (100 - this.state.discount) * 0.01
     const profit = this.state.discount * 0.01
+    const feeTax = this.state.feeTax
     this.setState({
       currierSum: this.state.productSum * discount,
-      profit: this.state.productSum * profit
+      profit: this.state.productSum * profit - feeTax
     })
+  }
+
+  currierFee() {
+    const fee = this.state.orderSum - this.state.currierSum - this.state.profit
+    this.setState({ currierFee: fee })
   }
 
   deliveryCost() {
@@ -54,7 +68,7 @@ class Statictic extends Component {
   }
 
   deliveryCostChange(e) {
-    this.setState({ deliveryCost: e.target.value })
+    this.setState({ deliveryCost: +e.target.value })
     this.forceUpdateHandler()
   }
 
@@ -94,7 +108,24 @@ class Statictic extends Component {
   }
 
   discountChange(e) {
-    this.setState({ discount: e.target.value })
+    this.setState({ discount: +e.target.value })
+  }
+
+  feeTax() {
+    return (
+      <span>
+        <input
+          type="number"
+          value={this.state.feeTax}
+          onChange={this.feeTaxChange}
+        />
+      </span>
+    )
+  }
+
+  feeTaxChange(e) {
+    this.setState({ feeTax: +e.target.value })
+    this.forceUpdateHandler()
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -108,7 +139,7 @@ class Statictic extends Component {
     this.productSum(nextProps)
   }
 
-  forceUpdateHandler() {
+  forceUpdateHandler(nextProps, nextState) {
     this.forceUpdate(this.orderSum)
     this.forceUpdate(this.currierSum)
   }
@@ -117,12 +148,14 @@ class Statictic extends Component {
     return (
       <div>
         <ul>
-          <li>Order sum: {this.state.orderSum}</li>
-          <li>Currier sum: {this.state.currierSum}</li>
-          <li>Discount: {this.discount()}</li>
-          <li>Product sum: {this.state.productSum}</li>
-          <li>Delivery cost: {this.deliveryCost()}</li>
-          <li>Profit: {this.state.profit}</li>
+          <li>Сумма заказа: {this.state.orderSum}</li>
+          <li>Кафе: {this.state.currierSum}</li>
+          <li>Currier fee: {this.state.currierFee}</li>
+          <li>Скидка: {this.discount()}</li>
+          <li>Стоимость блюд(а): {this.state.productSum}</li>
+          <li>Стоимость доставки: {this.deliveryCost()}</li>
+          <li>Прибыль: {this.state.profit}</li>
+          <li>Fee tax: {this.feeTax()}</li>
         </ul>
       </div>
     )
