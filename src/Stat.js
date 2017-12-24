@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, Table, Container } from 'semantic-ui-react'
+import { Input, Table, Container, Button } from 'semantic-ui-react'
 
 class Statictic extends Component {
   constructor(props) {
@@ -25,6 +25,7 @@ class Statictic extends Component {
     this.currierFee = this.currierFee.bind(this)
     this.feeTax = this.feeTax.bind(this)
     this.feeTaxChange = this.feeTaxChange.bind(this)
+    this.copyTextToClipboard = this.copyTextToClipboard.bind(this)
   }
 
   orderSum() {
@@ -140,6 +141,28 @@ class Statictic extends Component {
     this.forceUpdateHandler()
   }
 
+  copyTextToClipboard() {
+    const textArea = document.createElement('textarea')
+
+    textArea.value = `${this.state.orderSum} клиент, ${
+      this.state.currierSum
+    } кафе, ${this.state.currierFee} тебе, ${this.state.profit} доставке`
+
+    document.body.appendChild(textArea)
+
+    textArea.select()
+
+    try {
+      const successful = document.execCommand('copy')
+      // const msg = successful ? 'successful' : 'unsuccessful'
+      // console.log('Copying text command was ' + msg)
+    } catch (err) {
+      console.log('Oops, unable to copy')
+    }
+
+    document.body.removeChild(textArea)
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     if (nextState !== this.state) {
       return true
@@ -164,7 +187,14 @@ class Statictic extends Component {
             <Table.Body>
               <Table.Row>
                 <Table.Cell collapsing>Сумма заказа:</Table.Cell>
-                <Table.Cell>{this.state.orderSum}</Table.Cell>
+                <Table.Cell collapsing>{this.state.orderSum}</Table.Cell>
+                <Table.Cell>
+                  <Button
+                    icon="copy"
+                    compact
+                    onClick={this.copyTextToClipboard}
+                  />
+                </Table.Cell>
               </Table.Row>
               <Table.Row>
                 <Table.Cell collapsing>Кафе:</Table.Cell>
