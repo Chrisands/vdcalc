@@ -1,6 +1,6 @@
 {
   "name": "vdcalc",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "gh-pages": "^1.1.0",
@@ -8,8 +8,7 @@
     "react-dom": "^16.2.0",
     "react-scripts": "1.0.17",
     "semantic-ui-css": "^2.2.12",
-    "semantic-ui-react": "^0.77.1",
-    "webpack": "^3.10.0"
+    "semantic-ui-react": "^0.77.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -18,7 +17,8 @@
     "eject": "react-scripts eject",
     "deploy": "npm run build&&gh-pages -d build"
   },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "description":
+    "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
   "main": "index.js",
   "devDependencies": {},
   "repository": {
@@ -29,6 +29,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Chrisands/vdcalc/issues"
-  },
-  "homepage": "https://Chrisands.github.io/vdcalc"
+  }
 }
