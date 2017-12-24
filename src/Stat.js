@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Input, Table, Container } from 'semantic-ui-react'
 
 class Statictic extends Component {
   constructor(props) {
@@ -50,7 +51,11 @@ class Statictic extends Component {
   deliveryCost() {
     return (
       <span>
-        <input
+        <Input
+          transparent
+          // label={{ basic: true, content: 'Руб' }}
+          // labelPosition="right"
+          size="small"
           type="number"
           list="deliveryCost"
           value={this.state.deliveryCost}
@@ -90,7 +95,11 @@ class Statictic extends Component {
   discount() {
     return (
       <span>
-        <input
+        <Input
+          transparent
+          // label={{ basic: true, content: '%' }}
+          // labelPosition="right"
+          size="small"
           type="number"
           list="discount"
           value={this.state.discount}
@@ -102,7 +111,6 @@ class Statictic extends Component {
           <option value="15" />
           <option value="20" />
         </datalist>
-        <span>%</span>
       </span>
     )
   }
@@ -114,7 +122,11 @@ class Statictic extends Component {
   feeTax() {
     return (
       <span>
-        <input
+        <Input
+          transparent
+          // label={{ basic: true, content: 'Руб' }}
+          // labelPosition="right"
+          size="small"
           type="number"
           value={this.state.feeTax}
           onChange={this.feeTaxChange}
@@ -147,40 +159,44 @@ class Statictic extends Component {
   render() {
     return (
       <div>
-        <ul>
-          <li>
-            <span>Сумма заказа: </span>
-            <span>{this.state.orderSum}</span>
-          </li>
-          <li>
-            <span>Кафе: </span>
-            <span>{this.state.currierSum}</span>
-          </li>
-          <li>
-            <span>Гонорар курьера: </span>
-            <span>{this.state.currierFee}</span>
-          </li>
-          <li>
-            <span>Скидка: </span>
-            <span>{this.discount()}</span>
-          </li>
-          <li>
-            <span>Стоимость блюд(а): </span>
-            <span>{this.state.productSum}</span>
-          </li>
-          <li>
-            <span>Стоимость доставки: </span>
-            <span>{this.deliveryCost()}</span>
-          </li>
-          <li>
-            <span>Прибыль: </span>
-            <span>{this.state.profit}</span>
-          </li>
-          <li>
-            <span>Доплата курьеру: </span>
-            <span>{this.feeTax()}</span>
-          </li>
-        </ul>
+        <Container>
+          <Table unstackable basic="very">
+            <Table.Body>
+              <Table.Row>
+                <Table.Cell collapsing>Сумма заказа:</Table.Cell>
+                <Table.Cell>{this.state.orderSum}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell collapsing>Кафе:</Table.Cell>
+                <Table.Cell>{this.state.currierSum}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell collapsing>Гонорар курьера:</Table.Cell>
+                <Table.Cell>{this.state.currierFee}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell collapsing>Скидка:</Table.Cell>
+                <Table.Cell>{this.discount()}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell collapsing>Стоимость блюд(а):</Table.Cell>
+                <Table.Cell>{this.state.productSum}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell collapsing>Стоимость доставки:</Table.Cell>
+                <Table.Cell>{this.deliveryCost()}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell collapsing>Прибыль:</Table.Cell>
+                <Table.Cell>{this.state.profit}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell collapsing>Доплата курьеру:</Table.Cell>
+                <Table.Cell>{this.feeTax()}</Table.Cell>
+              </Table.Row>
+            </Table.Body>
+          </Table>
+        </Container>
       </div>
     )
   }

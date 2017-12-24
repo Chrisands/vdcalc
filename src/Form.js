@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Table, Input } from 'semantic-ui-react'
 
 class Form extends Component {
   constructor(props) {
@@ -24,28 +25,28 @@ class Form extends Component {
 
   createForm(item) {
     return (
-      <li onFocus={this.handleClick} key={item.key}>
-        <form>
-          <label>
-            <input
-              type="number"
-              id={item.key}
-              value={item.cost}
-              onChange={this.onCostChange}
-            />
-          </label>
-          <label>
-            <input
-              type="number"
-              style={{ width: 50 }}
-              id={item.key}
-              value={item.amount}
-              onChange={this.onAmountChange}
-            />
-          </label>
-          <label>{item.product}</label>
-        </form>
-      </li>
+      <Table.Row onFocus={this.handleClick} key={item.key}>
+        <Table.Cell collapsing>
+          <Input
+            type="number"
+            size="small"
+            id={item.key}
+            value={item.cost}
+            onChange={this.onCostChange}
+          />
+        </Table.Cell>
+        <Table.Cell collapsing>
+          <Input
+            type="number"
+            size="small"
+            style={{ width: 60 }}
+            id={item.key}
+            value={item.amount}
+            onChange={this.onAmountChange}
+          />
+        </Table.Cell>
+        <Table.Cell>{item.product}</Table.Cell>
+      </Table.Row>
     )
   }
 
@@ -53,7 +54,11 @@ class Form extends Component {
     const formEntries = this.props.entries
     const listItems = formEntries.map(this.createForm)
 
-    return <ul>{listItems}</ul>
+    return (
+      <Table unstackable basic="very">
+        <Table.Body>{listItems}</Table.Body>
+      </Table>
+    )
   }
 }
 

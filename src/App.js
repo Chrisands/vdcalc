@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Form from './Form'
 import Statictic from './Stat'
+import { Button, Divider, Container } from 'semantic-ui-react'
 
 class App extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class App extends Component {
     this.state = {
       count: 1,
       currentKey: 1,
-      form: [{ cost: '', amount: '1', product: '', key: 1 }]
+      form: [{ cost: '', amount: '1', product: 0, key: 1 }]
     }
 
     this.handleItemAdd = this.handleItemAdd.bind(this)
@@ -57,7 +58,7 @@ class App extends Component {
     const itemForm = this.state.form
 
     if (this.state.count < 25) {
-      itemForm.push({ cost: '', amount: '1', product: '', key: counter })
+      itemForm.push({ cost: '', amount: '1', product: 0, key: counter })
       this.setState({ count: counter })
     }
   }
@@ -94,23 +95,20 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div>
-          <Statictic formArray={this.state.form} formState={this.state} />
-        </div>
-        <Form
-          entries={this.state.form}
-          getKey={this.currentKey}
-          onCostValueChange={this.handleCostChange}
-          onAmountValueChange={this.handleAmountChange}
-        />
-        <div>
-          <button type="button" onClick={this.handleItemAdd}>
-            +
-          </button>
-          <button type="button" onClick={this.handleItemDelete}>
-            –
-          </button>
-        </div>
+        <Statictic formArray={this.state.form} formState={this.state} />
+        <Divider />
+        <Container>
+          <Form
+            entries={this.state.form}
+            getKey={this.currentKey}
+            onCostValueChange={this.handleCostChange}
+            onAmountValueChange={this.handleAmountChange}
+          />
+          <Button.Group fluid>
+            <Button basic icon="add" onClick={this.handleItemAdd} />
+            <Button basic icon="minus" onClick={this.handleItemDelete} />
+          </Button.Group>
+        </Container>
       </div>
     )
   }
