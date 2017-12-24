@@ -144,9 +144,9 @@ class Statictic extends Component {
   copyTextToClipboard() {
     const textArea = document.createElement('textarea')
 
-    textArea.value = `${this.state.orderSum} клиент, ${
-      this.state.currierSum
-    } кафе, ${this.state.currierFee} тебе, ${this.state.profit} доставке`
+    textArea.value = `${this.state.orderSum} клиент, ${this.state.currierSum} кафе, ${
+      this.state.currierFee
+    } тебе, ${this.state.profit} доставке`
 
     document.body.appendChild(textArea)
 
@@ -189,11 +189,7 @@ class Statictic extends Component {
                 <Table.Cell collapsing>Сумма заказа:</Table.Cell>
                 <Table.Cell collapsing>{this.state.orderSum}</Table.Cell>
                 <Table.Cell>
-                  <Button
-                    icon="copy"
-                    compact
-                    onClick={this.copyTextToClipboard}
-                  />
+                  <Button icon="copy" basic compact onClick={this.copyTextToClipboard} />
                 </Table.Cell>
               </Table.Row>
               <Table.Row>
