@@ -1,14 +1,20 @@
+/* eslint-env browser */
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Input, Table, Container, Button } from 'semantic-ui-react'
 
 class Statictic extends Component {
+  static propTypes = {
+    formArray: PropTypes.arrayOf(PropTypes.object).isRequired
+  }
+
   constructor(props) {
     super(props)
     this.state = {
       orderSum: 0,
       productSum: 0,
       discount: 10,
-      deliveryCost: 0,
+      deliveryCost: 300,
       profit: 0,
       currierSum: 0,
       currierFee: 0,
@@ -28,6 +34,18 @@ class Statictic extends Component {
     this.copyTextToClipboard = this.copyTextToClipboard.bind(this)
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.productSum(nextProps)
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState !== this.state) {
+      return true
+    }
+    return false
+  }
+
+
   orderSum() {
     const newOrderSum = +this.state.productSum + +this.state.deliveryCost
     this.setState({ orderSum: newOrderSum })
@@ -37,15 +55,16 @@ class Statictic extends Component {
   currierSum() {
     const discount = (100 - this.state.discount) * 0.01
     const profit = this.state.discount * 0.01
-    const feeTax = this.state.feeTax
+    const { feeTax } = this.state
     this.setState({
       currierSum: this.state.productSum * discount,
-      profit: this.state.productSum * profit - feeTax
+      profit: (this.state.productSum * profit) - feeTax
     })
   }
 
   currierFee() {
     const fee = this.state.orderSum - this.state.currierSum - this.state.profit
+
     this.setState({ currierFee: fee })
   }
 
@@ -79,11 +98,11 @@ class Statictic extends Component {
   }
 
   productSum(props) {
-    const formArray = props.formArray
+    const { formArray } = props
     const length = props.formState.count
-    const productSum = function(formArray, length) {
+    const productSum = () => {
       let sum = 0
-      for (let i = 0; i < length; i++) {
+      for (let i = 0; i < length; i += 1) {
         sum += formArray[i].product
       }
       return sum
@@ -144,37 +163,26 @@ class Statictic extends Component {
   copyTextToClipboard() {
     const textArea = document.createElement('textarea')
 
-    textArea.value = `${this.state.orderSum} клиент, ${this.state.currierSum} кафе, ${
-      this.state.currierFee
-    } тебе, ${this.state.profit} доставке`
+    const products = this.props.formArray.map((element) => {
+      const item = `${element.cost}*${element.amount}`
+      return item
+    })
+    products[0] = ` - ${products[0]}`
+    const line = products.reduce((a, b) => `${a}\n - ${b}`)
+
+    textArea.value = `${line}
+
+${this.state.orderSum} клиент, ${this.state.currierSum} кафе, ${this.state.currierFee} курьеру, ${this.state.profit} доставке`
 
     document.body.appendChild(textArea)
 
     textArea.select()
-
-    try {
-      const successful = document.execCommand('copy')
-      // const msg = successful ? 'successful' : 'unsuccessful'
-      // console.log('Copying text command was ' + msg)
-    } catch (err) {
-      console.log('Oops, unable to copy')
-    }
-
+    document.execCommand('copy')
     document.body.removeChild(textArea)
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextState !== this.state) {
-      return true
-    }
-    return false
-  }
 
-  componentWillReceiveProps(nextProps) {
-    this.productSum(nextProps)
-  }
-
-  forceUpdateHandler(nextProps, nextState) {
+  forceUpdateHandler() {
     this.forceUpdate(this.orderSum)
     this.forceUpdate(this.currierSum)
   }
