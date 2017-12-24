@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import { Button, Divider, Container } from 'semantic-ui-react'
 import Form from './Form'
 import Statictic from './Stat'
-import { Button, Divider, Container } from 'semantic-ui-react'
 
 class App extends Component {
   constructor(props) {
@@ -9,7 +9,14 @@ class App extends Component {
     this.state = {
       count: 1,
       currentKey: 1,
-      form: [{ cost: '', amount: '1', product: 0, key: 1 }]
+      form: [
+        {
+          cost: '',
+          amount: '1',
+          product: 0,
+          key: 1
+        }
+      ]
     }
 
     this.handleItemAdd = this.handleItemAdd.bind(this)
@@ -17,6 +24,25 @@ class App extends Component {
     this.handleCostChange = this.handleCostChange.bind(this)
     this.handleAmountChange = this.handleAmountChange.bind(this)
     this.currentKey = this.currentKey.bind(this)
+  }
+
+  componentDidUpdate() {
+    // updates product when something changes
+    const { form, currentKey } = this.state
+    const newProduct = form[currentKey - 1].cost * form[currentKey - 1].amount
+    const nextForm = form.map((f) => {
+      if (f.key !== currentKey) {
+        return f
+      }
+      return {
+        ...f,
+        product: newProduct
+      }
+    })
+
+    if (newProduct !== form[currentKey - 1].product) {
+      this.setState({ form: nextForm }) // eslint-disable-line
+    }
   }
 
   currentKey(e) {
@@ -53,42 +79,28 @@ class App extends Component {
     this.setState({ form: nextForm })
   }
 
-  handleItemAdd(e) {
+  handleItemAdd() {
     const counter = this.state.count + 1
     const itemForm = this.state.form
 
     if (this.state.count < 25) {
-      itemForm.push({ cost: '', amount: '1', product: 0, key: counter })
+      itemForm.push({
+        cost: '',
+        amount: '1',
+        product: 0,
+        key: counter
+      })
       this.setState({ count: counter })
     }
   }
 
-  handleItemDelete(e) {
+  handleItemDelete() {
     const counter = this.state.count - 1
     const itemForm = this.state.form
 
     if (this.state.count > 1) {
       itemForm.pop()
       this.setState({ count: counter, currentKey: 1 })
-    }
-  }
-
-  componentDidUpdate(nextProps, nextState) {
-    // updates product when something changes
-    const { form, currentKey } = this.state
-    const newProduct = form[currentKey - 1].cost * form[currentKey - 1].amount
-    const nextForm = form.map((f) => {
-      if (f.key !== currentKey) {
-        return f
-      }
-      return {
-        ...f,
-        product: newProduct
-      }
-    })
-
-    if (newProduct !== form[currentKey - 1].product) {
-      this.setState({ form: nextForm })
     }
   }
 

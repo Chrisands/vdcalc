@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Table, Input } from 'semantic-ui-react'
 
 class Form extends Component {
+  static propTypes = {
+    onCostValueChange: PropTypes.func.isRequired,
+    onAmountValueChange: PropTypes.func.isRequired,
+    entries: PropTypes.arrayOf(PropTypes.object).isRequired,
+    getKey: PropTypes.func.isRequired
+  }
+
   constructor(props) {
     super(props)
 
