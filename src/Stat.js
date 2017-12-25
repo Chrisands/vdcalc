@@ -75,6 +75,7 @@ class Statictic extends Component {
           transparent
           // label={{ basic: true, content: 'Руб' }}
           // labelPosition="right"
+          icon="ruble"
           size="small"
           type="number"
           list="deliveryCost"
@@ -119,6 +120,7 @@ class Statictic extends Component {
           transparent
           // label={{ basic: true, content: '%' }}
           // labelPosition="right"
+          icon="percent"
           size="small"
           type="number"
           list="discount"
@@ -146,6 +148,7 @@ class Statictic extends Component {
           transparent
           // label={{ basic: true, content: 'Руб' }}
           // labelPosition="right"
+          icon="ruble"
           size="small"
           type="number"
           value={this.state.feeTax}
