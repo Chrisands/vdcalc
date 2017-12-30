@@ -139,6 +139,7 @@ class Statictic extends Component {
 
   discountChange(e) {
     this.setState({ discount: +e.target.value })
+    this.forceUpdateHandler()
   }
 
   feeTax() {
