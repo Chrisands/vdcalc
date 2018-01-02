@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Divider, Container } from 'semantic-ui-react'
+import { Button, Divider, Container, Responsive, Segment, Grid } from 'semantic-ui-react'
 import Form from './Form'
 import Statictic from './Stat'
 
@@ -106,10 +106,9 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <Grid stackable columns={2} padded centered>
         <Statictic formArray={this.state.form} formState={this.state} />
-        <Divider />
-        <Container>
+        <Grid.Column width={3}>
           <Form
             entries={this.state.form}
             getKey={this.currentKey}
@@ -120,8 +119,8 @@ class App extends Component {
             <Button basic icon="add" onClick={this.handleItemAdd} />
             <Button basic icon="minus" onClick={this.handleItemDelete} />
           </Button.Group>
-        </Container>
-      </div>
+        </Grid.Column>
+      </Grid>
     )
   }
 }

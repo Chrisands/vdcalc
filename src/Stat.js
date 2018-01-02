@@ -1,7 +1,7 @@
 /* eslint-env browser */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Input, Table, Container, Button } from 'semantic-ui-react'
+import { Input, Table, Container, Button, Responsive, Segment, Grid } from 'semantic-ui-react'
 
 class Statictic extends Component {
   static propTypes = {
@@ -73,8 +73,7 @@ class Statictic extends Component {
       <span>
         <Input
           transparent
-          // label={{ basic: true, content: 'Руб' }}
-          // labelPosition="right"
+          fluid
           icon="ruble"
           size="small"
           type="number"
@@ -118,8 +117,7 @@ class Statictic extends Component {
       <span>
         <Input
           transparent
-          // label={{ basic: true, content: '%' }}
-          // labelPosition="right"
+          fluid
           icon="percent"
           size="small"
           type="number"
@@ -147,8 +145,7 @@ class Statictic extends Component {
       <span>
         <Input
           transparent
-          // label={{ basic: true, content: 'Руб' }}
-          // labelPosition="right"
+          fluid
           icon="ruble"
           size="small"
           type="number"
@@ -176,7 +173,7 @@ class Statictic extends Component {
 
     textArea.value = `${line}
 
-${this.state.orderSum} клиент, ${this.state.currierSum} кафе, ${this.state.currierFee} курьеру, ${this.state.profit} доставке`
+${this.state.orderSum} клиент, ${this.state.currierSum} кафе, ${this.state.currierFee} тебе, ${this.state.profit} доставке`
 
     document.body.appendChild(textArea)
 
@@ -193,49 +190,49 @@ ${this.state.orderSum} клиент, ${this.state.currierSum} кафе, ${this.s
 
   render() {
     return (
-      <div>
-        <Container>
-          <Table unstackable basic="very">
-            <Table.Body>
-              <Table.Row>
-                <Table.Cell collapsing>Сумма заказа:</Table.Cell>
-                <Table.Cell collapsing>{this.state.orderSum}</Table.Cell>
-                <Table.Cell>
-                  <Button icon="copy" basic compact onClick={this.copyTextToClipboard} />
-                </Table.Cell>
-              </Table.Row>
-              <Table.Row>
-                <Table.Cell collapsing>Кафе:</Table.Cell>
-                <Table.Cell>{this.state.currierSum}</Table.Cell>
-              </Table.Row>
-              <Table.Row>
-                <Table.Cell collapsing>Гонорар курьера:</Table.Cell>
-                <Table.Cell>{this.state.currierFee}</Table.Cell>
-              </Table.Row>
-              <Table.Row>
-                <Table.Cell collapsing>Скидка:</Table.Cell>
-                <Table.Cell>{this.discount()}</Table.Cell>
-              </Table.Row>
-              <Table.Row>
-                <Table.Cell collapsing>Стоимость блюд(а):</Table.Cell>
-                <Table.Cell>{this.state.productSum}</Table.Cell>
-              </Table.Row>
-              <Table.Row>
-                <Table.Cell collapsing>Стоимость доставки:</Table.Cell>
-                <Table.Cell>{this.deliveryCost()}</Table.Cell>
-              </Table.Row>
-              <Table.Row>
-                <Table.Cell collapsing>Прибыль:</Table.Cell>
-                <Table.Cell>{this.state.profit}</Table.Cell>
-              </Table.Row>
-              <Table.Row>
-                <Table.Cell collapsing>Доплата курьеру:</Table.Cell>
-                <Table.Cell>{this.feeTax()}</Table.Cell>
-              </Table.Row>
-            </Table.Body>
-          </Table>
-        </Container>
-      </div>
+      <Grid.Column width={3}>
+        <Button.Group fluid compact>
+          <Button basic compact icon="copy" onClick={this.copyTextToClipboard} />
+        </Button.Group>
+        <Table unstackable basic="very">
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell collapsing>Сумма заказа:</Table.Cell>
+              <Table.Cell >
+                {this.state.orderSum}
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell collapsing>Кафе:</Table.Cell>
+              <Table.Cell>{this.state.currierSum}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell collapsing>Гонорар курьера:</Table.Cell>
+              <Table.Cell>{this.state.currierFee}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell collapsing>Скидка:</Table.Cell>
+              <Table.Cell>{this.discount()}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell collapsing>Стоимость блюд(а):</Table.Cell>
+              <Table.Cell>{this.state.productSum}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell collapsing>Стоимость доставки:</Table.Cell>
+              <Table.Cell>{this.deliveryCost()}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell collapsing>Прибыль:</Table.Cell>
+              <Table.Cell>{this.state.profit}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell collapsing>Доплата курьеру:</Table.Cell>
+              <Table.Cell>{this.feeTax()}</Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table>
+      </Grid.Column>
     )
   }
 }
