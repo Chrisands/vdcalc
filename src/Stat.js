@@ -1,7 +1,7 @@
 /* eslint-env browser */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Input, Table, Container, Button, Responsive, Segment, Grid } from 'semantic-ui-react'
+import { Input, Table, Button, Grid } from 'semantic-ui-react'
 
 class Statictic extends Component {
   static propTypes = {

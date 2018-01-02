@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Divider, Container, Responsive, Segment, Grid } from 'semantic-ui-react'
+import { Button, Grid } from 'semantic-ui-react'
 import Form from './Form'
 import Statictic from './Stat'
 
