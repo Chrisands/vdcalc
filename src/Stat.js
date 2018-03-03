@@ -173,7 +173,7 @@ class Statictic extends Component {
 
     textArea.value = `${line}
 
-${this.state.orderSum} клиент, ${this.state.currierSum} кафе, ${this.state.currierFee} тебе, ${this.state.profit} менеджеру`
+${this.state.orderSum} клиент, ${this.state.currierSum} кафе, ${this.state.currierFee} тебе, ${this.state.profit} мне`
 
     document.body.appendChild(textArea)
 
