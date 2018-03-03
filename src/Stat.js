@@ -168,7 +168,7 @@ class Statictic extends Component {
       const item = `${element.cost}*${element.amount}`
       return item
     })
-    products[0] = ` - ${products[0]}`
+    products[0] = `${products[0]}`
     const line = products.reduce((a, b) => `${a}\n - ${b}`)
 
     textArea.value = `${line}
