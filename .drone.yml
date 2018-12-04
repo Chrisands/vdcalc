@@ -1,0 +1,18 @@
+pipeline:
+  install:
+    image: node:alpine
+    commands:
+      - yarn
+
+  vdcalc:
+    image: plugins/ecr
+    privileged: true
+    dockerfile: Dockerfile
+    repo: 011659829414.dkr.ecr.us-east-2.amazonaws.com/vdcalc
+    secrets: [ ecr_access_key, ecr_secret_key ]
+    region: us-east-2
+    tag:
+      - v${DRONE_BUILD_NUMBER}
+      - latest
+    when:
+      event: push
