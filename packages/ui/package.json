@@ -1,0 +1,35 @@
+{
+  "name": "@vd/ui",
+  "version": "0.0.0",
+  "author": "Andrey Osijuk <a.osijuk@gmail.com>",
+  "license": "MIT",
+  "main": "src/",
+  "scripts": {
+    "docs:server": "docsnow server --summary Readme.md --config config/docsnow.config.js",
+    "docs:build": "docsnow build --summary Readme.md --config config/docsnow.config.js",
+    "lint": "eslint config src -f table"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
+    "docsnow": "^0.4.8",
+    "elementum": "^0.4.2",
+    "elementum-tools": "^0.4.2",
+    "eslint": "^5.13.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.0.2",
+    "flex-layouts": "^1.0.0",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
+    "react-onclickoutside": "^6.7.1",
+    "react-popper": "^1.3.3",
+    "react-select": "^2.4.0"
+  }
+}
