@@ -14,7 +14,7 @@
   "homepage": "vdcalc.surge.sh",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chrisands/vdcalc"
+    "url": "https://github.com/chrisands/vdcalc.git"
   },
   "keywords": [
     "elementum",

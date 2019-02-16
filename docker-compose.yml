@@ -15,6 +15,17 @@ services:
       - ./:/workspace
     entrypoint: yarn docs:server
     environment:
-      - PORT=8012
+      - PORT=8002
     ports:
-      - 8012:8012
+      - 8002:8002
+
+  dashboard:
+    image: node:alpine
+    working_dir: /workspace/packages/dashboard
+    volumes:
+      - ./:/workspace
+    entrypoint: yarn dev
+    environment:
+      - PORT=8000
+    ports:
+      - 8000:8000

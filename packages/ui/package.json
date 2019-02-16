@@ -10,7 +10,7 @@
     "lint": "eslint config src -f table"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-proposal-class-properties": "^7.3.3",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
@@ -19,7 +19,7 @@
     "docsnow": "^0.4.8",
     "elementum": "^0.4.2",
     "elementum-tools": "^0.4.2",
-    "eslint": "^5.13.0",
+    "eslint": "^5.14.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
