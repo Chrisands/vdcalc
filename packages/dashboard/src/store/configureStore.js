@@ -3,8 +3,9 @@ import {
   compose,
   applyMiddleware,
 } from 'redux'
-import { persistStore } from 'redux-persist'
+import { persistStore, persistReducer } from 'redux-persist'
 import { routerMiddleware } from 'connected-react-router'
+import storage from 'redux-persist/lib/storage'
 import createRootReducer from '../reducers'
 import api from './middleware/api'
 
@@ -18,9 +19,15 @@ const configureStore = (initialState, history) => {
     ),
   )
 
-  const reducer = createRootReducer(history)
+  const persistConfig = {
+    key: 'root',
+    storage,
+  }
 
-  const store = createStore(reducer, initialState, enhancer)
+  const reducer = createRootReducer(history)
+  const persistedReducer = persistReducer(persistConfig, reducer)
+
+  const store = createStore(persistedReducer, initialState, enhancer)
 
   if (module.hot) {
     module.hot.accept('../reducers', () => store.replaceReducer(reducer))
