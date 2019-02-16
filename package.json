@@ -8,5 +8,17 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "description": "Vegan Delivery project located in Russia",
+  "author": "Andrey Osijuk <a.osijuk@gmail.com>",
+  "homepage": "vdcalc.surge.sh",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisands/vdcalc"
+  },
+  "keywords": [
+    "elementum",
+    "flex-layouts"
+  ],
+  "license": "MIT"
 }
