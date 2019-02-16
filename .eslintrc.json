@@ -6,6 +6,9 @@
     "node": true,
     "browser": true
   },
+  "plugins": [
+    "react-hooks"
+  ],
   "globals": {},
   "rules": {
     "semi": [2, "never"],
@@ -14,11 +17,14 @@
       "ignoreComments": false
     }],
     "object-curly-newline": ["error", {
-      "ObjectExpression": { "minProperties": 7, "multiline": true, "consistent": true },
-      "ObjectPattern": { "minProperties": 7, "multiline": true, "consistent": true }
+      "ObjectExpression": { "minProperties": 5, "multiline": true, "consistent": true },
+      "ObjectPattern": { "minProperties": 5, "multiline": true, "consistent": true }
     }],
     "no-underscore-dangle": ["error", {
-      "allow": ["_controlContainer"]
+      "allow": [
+        "_controlContainer",
+        "__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"
+      ]
     }],
     "function-paren-newline": 0,
     "jsx-quotes": [2, "prefer-single"],
@@ -31,6 +37,7 @@
     "react/prop-types": 0,
     "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/no-static-element-interactions": 0,
-    "jsx-a11y/anchor-is-valid": 0
+    "jsx-a11y/anchor-is-valid": 0,
+    "react-hooks/rules-of-hooks": 2
   }
 }
