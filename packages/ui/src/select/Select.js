@@ -11,6 +11,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     position: 'relative',
+    width: '100%',
   }),
   control: (provided, state) => ({
     display: 'flex',
@@ -210,7 +211,9 @@ const ClearIndicator = props => (
 
 const Select = ({
   value,
+  onChange,
   options,
+  placeholder = '',
   ...props
 }) => (
   <ReactSelect
@@ -223,7 +226,8 @@ const Select = ({
     maxMenuHeight={160}
     isClearable
     options={options}
-    placeholder=''
+    onChange={onChange}
+    placeholder={placeholder}
     {...props}
   />
 )
