@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#BBB',
   },
   'color=gray150': {
-    backgroundColor: '#F6F6F6',
+    backgroundColor: 'transparent',
     '&:hover': {
       backgroundColor: '#E6E6E6',
     },

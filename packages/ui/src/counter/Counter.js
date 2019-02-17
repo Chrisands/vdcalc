@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Layout } from 'flex-layouts'
 import { StyleSheet } from 'elementum'
 import { Text } from '../text'
@@ -7,7 +7,7 @@ import CounterButton from './CounterButton'
 const styles = StyleSheet.create({
   self: {
     display: 'flex',
-    width: '86px',
+    width: '88px',
     height: '32px',
     backgroundColor: 'rgba(238, 238, 238, 0.5)',
     borderRadius: '16px',
@@ -17,11 +17,11 @@ const styles = StyleSheet.create({
   },
 })
 
-const onChangeCounter = (value, onChange, action) => {
-  if (action === 'plus' && value >= 0) {
+const onChangeCounter = (value, onChange, minValue, action) => {
+  if (action === 'plus' && value >= minValue) {
     onChange(value + 1)
   }
-  if (action === 'subtract' && value > 0) {
+  if (action === 'subtract' && value > minValue) {
     onChange(value - 1)
   }
 }
@@ -29,11 +29,14 @@ const onChangeCounter = (value, onChange, action) => {
 const Counter = ({
   value = 0,
   onChange = () => {},
+  minValue = 0,
 }) => {
   const [counter, setCounter] = useState(value)
-  useEffect(() => {
-    onChange(counter)
-  })
+
+  const changeCounter = (newValue) => {
+    setCounter(newValue)
+    onChange(newValue)
+  }
 
   return (
     <div
@@ -41,7 +44,7 @@ const Counter = ({
     >
       <Layout basis='24px'>
         <CounterButton
-          onClick={() => onChangeCounter(counter, setCounter, 'subtract')}
+          onClick={() => onChangeCounter(counter, changeCounter, minValue, 'subtract')}
         />
       </Layout>
       <Layout
@@ -54,7 +57,7 @@ const Counter = ({
       </Layout>
       <Layout basis='24px'>
         <CounterButton
-          onClick={() => onChangeCounter(counter, setCounter, 'plus')}
+          onClick={() => onChangeCounter(counter, changeCounter, minValue, 'plus')}
           right
         />
       </Layout>

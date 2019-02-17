@@ -19,7 +19,7 @@ const Layer = ({
 
   // eslint-disable-next-line consistent-return
   useEffect(() => {
-    if (element) {
+    if (element && portal) {
       document.body.appendChild(element)
       return () => {
         document.body.removeChild(element)
@@ -27,79 +27,52 @@ const Layer = ({
     }
   })
 
+  const popper = (
+    <Popper
+      placement={align}
+      modifiers={{
+        inner: {
+          enabled: inner,
+        },
+      }}
+      referenceElement={parent}
+    >
+      {({
+        ref, style, placement,
+      }) => (
+        <OnOutsideClick
+          onOutsideClick={onOutsideClick}
+        >
+          <div
+            ref={ref}
+            data-placement={placement}
+            style={{
+              ...style,
+              top: style.top + topOffset,
+              left: style.left + leftOffset,
+              zIndex,
+            }}
+          >
+            {children}
+          </div>
+        </OnOutsideClick>
+      )}
+    </Popper>
+  )
+
   if (typeof document !== 'undefined' && portal) {
-    if (portal) {
-      return (
-        <Manager>
-          {createPortal(
-            <Popper
-              placement={align}
-              modifiers={{
-                inner: {
-                  enabled: inner,
-                },
-              }}
-              referenceElement={parent}
-            >
-              {({
-                ref, style, placement,
-              }) => (
-                <OnOutsideClick
-                  onOutsideClick={onOutsideClick}
-                >
-                  <div
-                    ref={ref}
-                    data-placement={placement}
-                    style={{
-                      ...style,
-                      top: style.top + topOffset,
-                      left: style.left + leftOffset,
-                      zIndex,
-                    }}
-                  >
-                    {children}
-                  </div>
-                </OnOutsideClick>
-              )}
-            </Popper>,
-            element,
-          )}
-        </Manager>
-      )
-    }
+    return (
+      <Manager>
+        {createPortal(
+          popper,
+          element,
+        )}
+      </Manager>
+    )
   }
   return (
     <Manager>
-      <Popper
-        placement={align}
-        modifiers={{
-          inner: {
-            enabled: inner,
-          },
-        }}
-        referenceElement={parent}
-      >
-        {({
-          ref, style, placement,
-        }) => (
-          <OnOutsideClick
-            onOutsideClick={onOutsideClick}
-          >
-            <div
-              ref={ref}
-              data-placement={placement}
-              style={{
-                ...style,
-                top: style.top + topOffset,
-                left: style.left + leftOffset,
-                zIndex,
-              }}
-            >
-              {children}
-            </div>
-          </OnOutsideClick>
-        )}
-      </Popper>
+      {popper}
     </Manager>
   )
 }

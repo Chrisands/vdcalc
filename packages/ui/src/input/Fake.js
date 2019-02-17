@@ -41,10 +41,17 @@ const Fake = ({
       disabled,
       focus,
       hover,
+      leftChild,
+      rightChild,
     })}
     tabIndex='-1'
   >
-    {leftChild}
+    <Condition match={leftChild}>
+      <Layout basis='12px' />
+      <Layout>
+        {leftChild}
+      </Layout>
+    </Condition>
     <Condition match={!leftChild}>
       <Layout basis='12px' />
     </Condition>
@@ -52,7 +59,12 @@ const Fake = ({
     <Condition match={!rightChild}>
       <Layout basis='12px' />
     </Condition>
-    {rightChild}
+    <Condition match={rightChild}>
+      <Layout>
+        {rightChild}
+      </Layout>
+      <Layout basis='12px' />
+    </Condition>
   </div>
 )
 
