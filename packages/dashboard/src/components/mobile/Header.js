@@ -3,7 +3,7 @@ import { injectIntl } from 'react-intl'
 import { Row, Layout } from 'flex-layouts'
 import { Block } from '@vd/ui/src/content'
 import { Logo } from '@vd/ui/src/logo'
-import { Select } from '@vd/ui/src/select'
+import { ReactSelect } from '@vd/ui/src/select'
 import { Ghost } from '@vd/ui/src/button'
 import { CopyIcon, MinusIcon, PlusIcon } from '@vd/ui/src/icons'
 
@@ -21,7 +21,7 @@ const Header = () => (
       </Layout>
       <Layout basis='16px' />
       <Layout basis='112px'>
-        <Select
+        <ReactSelect
           value='Calculator'
         />
       </Layout>
