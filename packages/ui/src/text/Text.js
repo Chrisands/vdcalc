@@ -47,14 +47,20 @@ const styles = StyleSheet.create({
   'color=gray200': {
     color: '#EEE',
   },
+  'color=blue200': {
+    color: '#293246',
+  },
   'align=center': {
     alignItems: 'center',
   },
-  uppercase: {
+  'transform=uppercase': {
     textTransform: 'uppercase',
   },
-  lowercase: {
+  'transform=lowercase': {
     textTransform: 'lowercase',
+  },
+  'transform=capitalize': {
+    textTransform: 'capitalize',
   },
 })
 
@@ -65,8 +71,7 @@ const Text = ({
   size = 'normal',
   color = 'gray600',
   align,
-  uppercase,
-  lowercase,
+  transform,
 }) => (
   <div
     className={styles({
@@ -75,8 +80,7 @@ const Text = ({
       size,
       color,
       align,
-      uppercase,
-      lowercase,
+      transform,
     })}
   >
     {children}

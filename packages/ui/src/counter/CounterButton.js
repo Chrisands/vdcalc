@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { Button } from '../button'
 import { ArrowIcon } from '../icons'
-import Layer from '../layer/Layer'
+import { Layer } from '../layer'
 
 const CounterButton = ({
   onClick,

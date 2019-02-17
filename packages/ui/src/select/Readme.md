@@ -3,7 +3,7 @@
 ### Селект
 ```jsx harmony
 import React, { Component } from 'react'
-import Select from './Select'
+import ReactSelect from './ReactSelect'
 
 class SelectExample extends Component {
   constructor(props) {
@@ -66,7 +66,7 @@ class SelectExample extends Component {
   
     return (
       <div style={{ margin: '10px 10px 160px 10px', padding: '10px' }}>
-        <Select
+        <ReactSelect
           value={value}
           onChange={this.onChangeValue}
           options={options}

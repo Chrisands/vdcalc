@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactSelect, { components } from 'react-select'
+import Select, { components } from 'react-select'
 import { CloseIcon, DropdownIcon } from '../icons'
 
 const styles = {
@@ -209,14 +209,14 @@ const ClearIndicator = props => (
   </components.ClearIndicator>
 )
 
-const Select = ({
+const ReactSelect = ({
   value,
   onChange,
   options,
   placeholder = '',
   ...props
 }) => (
-  <ReactSelect
+  <Select
     components={{
       DropdownIndicator,
       ClearIndicator,
@@ -232,4 +232,4 @@ const Select = ({
   />
 )
 
-export default Select
+export default ReactSelect
