@@ -1,0 +1,5 @@
+export const changeCost = '@@vd/calculator/CHANGE_COST'
+export const changeAmount = '@@vd/calculator/CHANGE_AMOUNT'
+export const changePercent = '@@vd/calculator/CHANGE_PERCENT'
+export const addPositions = '@@vd/calculator/ADD_POSITIONS'
+export const removePositions = '@@vd/calculator/REMOVE_POSITIONS'

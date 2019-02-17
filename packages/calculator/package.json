@@ -2,5 +2,8 @@
   "name": "@vd/calculator",
   "version": "0.0.0",
   "author": "Andrey Osijuk <a.osijuk@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint src -f table"
+  }
 }
