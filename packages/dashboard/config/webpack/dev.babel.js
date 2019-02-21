@@ -129,6 +129,7 @@ export const plugins = [
   new HTMLWebpackPlugin(({
     title: 'Vegan Delivery',
     inject: false,
+    mobile: true,
     template: htmlTemplate,
     appMountId: 'app',
   })),
