@@ -22,6 +22,7 @@ const renderPosition = ({
         <Input
           value={cost}
           onChange={value => onChangeCost(value, providerIndex, positionIndex)}
+          mask='number'
         />
       </Layout>
       <Layout basis='8px' />
@@ -48,27 +49,23 @@ const renderPositions = ({
   providers,
   onChangeCost,
   onChangeAmount,
-}) => {
-  const data = providers[index]
-
-  return data.costs.map((cost, i) => (
-    <Fragment
-      key={`positions-${index}-${i}`}
-    >
-      {renderPosition({
-        cost,
-        amount: data.amounts[i],
-        providerIndex: index,
-        positionIndex: i,
-        onChangeCost,
-        onChangeAmount,
-      })}
-      <Layout
-        basis='8px'
-      />
-    </Fragment>
-  ))
-}
+}) => providers[index].keys.map((key, i) => (
+  <Fragment
+    key={`positions-${index}-${i}`}
+  >
+    {renderPosition({
+      cost: key.cost,
+      amount: key.amount,
+      providerIndex: index,
+      positionIndex: i,
+      onChangeCost,
+      onChangeAmount,
+    })}
+    <Layout
+      basis='8px'
+    />
+  </Fragment>
+))
 
 const renderProvider = ({
   name,
@@ -92,6 +89,7 @@ const renderProvider = ({
         <Input
           value={percent}
           onChange={value => onChangePercent(value, providerIndex)}
+          mask='number'
           rightChild={(
             <PercentIcon
               width={14}
@@ -129,7 +127,7 @@ const renderProviders = ({
     {renderProvider({
       name: provider.name,
       percent: provider.percent,
-      positionsCount: provider.costs.length,
+      positionsCount: provider.keys.length,
       providerIndex: index,
       onChangePercent,
       onChangePositions,

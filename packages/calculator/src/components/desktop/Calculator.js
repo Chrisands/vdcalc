@@ -6,10 +6,14 @@ import Data from './Data'
 
 const Calculator = ({
   providers,
+  deliveryCost,
+  currierSurcharge,
   onChangeCost,
   onChangeAmount,
   onChangePercent,
   onChangePositions,
+  onChangeDeliveryCost,
+  onChangeCurrierSurcharge,
 }) => (
   <Row
     justify='center'
@@ -21,7 +25,13 @@ const Calculator = ({
         <Layout>
           <Column>
             <Layout basis='32px' />
-            <Statistic />
+            <Statistic
+              providers={providers}
+              deliveryCost={deliveryCost}
+              currierSurcharge={currierSurcharge}
+              onChangeDeliveryCost={onChangeDeliveryCost}
+              onChangeCurrierSurcharge={onChangeCurrierSurcharge}
+            />
           </Column>
         </Layout>
         <Layout grow={1} />
