@@ -1,7 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 import React, { Fragment } from 'react'
 import { Column, Layout, Row } from 'flex-layouts'
-import { ReactSelect } from '@vd/ui/src/select'
 import { Input } from '@vd/ui/src/input'
 import Counter from '@vd/ui/src/counter/Counter'
 import { PercentIcon } from '@vd/ui/src/icons'
@@ -74,14 +73,16 @@ const renderProvider = ({
   providerIndex,
   onChangePercent,
   onChangePositions,
+  onChangeProviderName,
 }) => (
   <Layout
     key={`provider-${providerIndex}`}
   >
     <Row>
       <Layout basis='184px'>
-        <ReactSelect
+        <Input
           value={name}
+          onChange={value => onChangeProviderName(value, providerIndex)}
         />
       </Layout>
       <Layout basis='8px' />
@@ -117,6 +118,7 @@ const renderProviders = ({
   onChangeAmount,
   onChangePercent,
   onChangePositions,
+  onChangeProviderName,
 }) => providers.map((provider, index) => (
   <Fragment
     key={`providers-${index}`}
@@ -131,6 +133,7 @@ const renderProviders = ({
       providerIndex: index,
       onChangePercent,
       onChangePositions,
+      onChangeProviderName,
     })}
     <Layout
       basis='24px'
@@ -152,6 +155,7 @@ const Data = ({
   onChangeAmount = () => {},
   onChangePercent = () => {},
   onChangePositions = () => {},
+  onChangeProviderName = () => {},
 }) => (
   <Column>
     {renderProviders({
@@ -160,6 +164,7 @@ const Data = ({
       onChangeAmount,
       onChangePercent,
       onChangePositions,
+      onChangeProviderName,
     })}
   </Column>
 )

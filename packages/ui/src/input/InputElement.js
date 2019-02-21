@@ -37,8 +37,10 @@ const InputElement = forwardRef(({
 }, ref) => {
   const handleChange = ({ target }) => {
     if (mask === 'number') {
-      const number = target.value !== '' ? Number.parseInt(target.value, 10) : 0
-      onChange(number)
+      const number = target.value.replace(/(\d+)?(\D+)?/, '$1')
+      if (number.length < 16) {
+        onChange(Number(number))
+      }
     } else {
       onChange(target.value)
     }
