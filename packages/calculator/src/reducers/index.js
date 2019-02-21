@@ -22,6 +22,7 @@ const initialState = {
 
 export default createReducer(initialState, {
   [actions.change]: (state, { field, value }) => ({ ...state, [field]: value }),
+  [actions.clear]: () => ({ ...initialState }),
   [actions.changeCost]: (state, { value, providerIndex, positionIndex }) => {
     const newState = {
       ...state,
