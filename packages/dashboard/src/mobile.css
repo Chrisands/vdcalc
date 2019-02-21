@@ -1,3 +1,5 @@
-.FLLayoutLayout--OverflowXHidden {
+* {
   -webkit-overflow-scrolling: touch;
+  overflow: visible !important;
+  touch-action: manipulation;
 }

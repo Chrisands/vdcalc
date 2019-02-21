@@ -10,6 +10,7 @@ const Header = ({
   onAddProvider,
   onRemoveProvider,
   onCopy,
+  onClear,
 }) => (
   <Block>
     <Row
@@ -23,6 +24,7 @@ const Header = ({
             <Logo
               width={40}
               height={40}
+              onClick={onClear}
             />
           </Layout>
           <Layout grow={1} />

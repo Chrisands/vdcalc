@@ -4,7 +4,7 @@ import Header from './Header'
 
 const App = ({ children }) => (
   <Column fill>
-    <Layout basis='50px'>
+    <Layout basis='50pt'>
       <Header />
     </Layout>
     <Layout grow={1}>

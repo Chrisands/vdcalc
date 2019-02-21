@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { addProvider, removeProvider, copyData } from '@vd/calculator/src/actions'
+import { addProvider, removeProvider, copyData, clearData } from '@vd/calculator/src/actions'
 import Header from '../../components/mobile/Header'
 
 export default connect(
@@ -8,5 +8,6 @@ export default connect(
     onAddProvider: () => dispatch(addProvider()),
     onRemoveProvider: () => dispatch(removeProvider()),
     onCopy: () => dispatch(copyData()),
+    onClear: () => dispatch(clearData()),
   }),
 )(Header)
