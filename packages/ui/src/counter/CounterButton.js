@@ -1,36 +1,42 @@
-import React, { useRef } from 'react'
+import React from 'react'
+import { StyleSheet } from 'elementum'
 import { Button } from '../button'
 import { ArrowIcon } from '../icons'
-import { Layer } from '../layer'
+
+const styles = StyleSheet.create({
+  left: {
+    '& svg': {
+      paddingRight: '2px',
+    },
+  },
+  right: {
+    '& svg': {
+      paddingLeft: '2px',
+    },
+  },
+})
 
 const CounterButton = ({
   onClick,
   right,
-}) => {
-  const ref = useRef(null)
-
-  return (
-    <div
-      ref={ref}
+}) => (
+  <div
+    className={styles({
+      right,
+      left: !right,
+    })}
+  >
+    <Button
+      color='gray150'
+      height='small'
+      width='small'
+      onClick={onClick}
     >
-      <Button
-        color='gray150'
-        height='small'
-        width='small'
-        onClick={onClick}
-      >
-        <Layer
-          parent={ref.current}
-          topOffset={5}
-          leftOffset={right ? 1 : -1}
-        >
-          <ArrowIcon
-            right={right}
-          />
-        </Layer>
-      </Button>
-    </div>
-  )
-}
+      <ArrowIcon
+        right={right}
+      />
+    </Button>
+  </div>
+)
 
 export default CounterButton
