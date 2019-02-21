@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { addProvider, removeProvider } from '@vd/calculator/src/actions'
+import { addProvider, removeProvider, copyData } from '@vd/calculator/src/actions'
 import Header from '../../components/desktop/Header'
 
 export default connect(
@@ -7,5 +7,6 @@ export default connect(
   dispatch => ({
     onAddProvider: () => dispatch(addProvider()),
     onRemoveProvider: () => dispatch(removeProvider()),
+    onCopy: () => dispatch(copyData()),
   }),
 )(Header)
