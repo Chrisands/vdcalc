@@ -5,5 +5,8 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint src -f table"
+  },
+  "devDependencies": {
+    "decimal.js-light": "^2.5.0"
   }
 }

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Calculator from '../../components/desktop/Calculator'
-import { change, changeAmount, changeCost, changePercent, changePositions } from '../../actions'
+import { change, changeAmount, changeCost, changePositions, changeProvider, changeProviderSum } from '../../actions'
 
 export default connect(
   state => ({
@@ -13,9 +13,11 @@ export default connect(
     onChangeAmount: (value, providerIndex, positionIndex) => dispatch(
       changeAmount(value, providerIndex, positionIndex),
     ),
-    onChangePercent: (value, providerIndex) => dispatch(changePercent(value, providerIndex)),
+    onChangePercent: (value, providerIndex) => dispatch(changeProvider('percent', value, providerIndex)),
     onChangePositions: (value, providerIndex) => dispatch(changePositions(value, providerIndex)),
     onChangeDeliveryCost: value => dispatch(change('deliveryCost', value)),
     onChangeCurrierSurcharge: value => dispatch(change('currierSurcharge', value)),
+    onChangeProviderName: (value, providerIndex) => dispatch(changeProvider('name', value, providerIndex)),
+    onChangeProviderSum: (value, providerIndex) => dispatch(changeProviderSum('sum', value, providerIndex)),
   }),
 )(Calculator)

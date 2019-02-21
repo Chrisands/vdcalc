@@ -11,9 +11,11 @@ const Calculator = ({
   onChangeCost,
   onChangeAmount,
   onChangePercent,
+  onChangeProviderName,
   onChangePositions,
   onChangeDeliveryCost,
   onChangeCurrierSurcharge,
+  onChangeProviderSum,
 }) => (
   <Row
     justify='center'
@@ -31,6 +33,7 @@ const Calculator = ({
               currierSurcharge={currierSurcharge}
               onChangeDeliveryCost={onChangeDeliveryCost}
               onChangeCurrierSurcharge={onChangeCurrierSurcharge}
+              onChangeProviderSum={onChangeProviderSum}
             />
           </Column>
         </Layout>
@@ -42,6 +45,7 @@ const Calculator = ({
             onChangeAmount={onChangeAmount}
             onChangePercent={onChangePercent}
             onChangePositions={onChangePositions}
+            onChangeProviderName={onChangeProviderName}
           />
         </Layout>
       </Row>

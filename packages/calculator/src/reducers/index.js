@@ -5,8 +5,9 @@ import * as actions from '../constants'
 const initialState = {
   providers: [
     {
-      name: 'Loving Hut',
+      name: '',
       percent: 10,
+      sum: 0,
       keys: [
         {
           cost: 0,
@@ -69,12 +70,21 @@ export default createReducer(initialState, {
       ...newState,
     }
   },
-  [actions.changePercent]: (state, { value, providerIndex }) => {
-    state.providers[providerIndex].percent = value
-
+  [actions.changeProvider]: (state, { field, value, providerIndex }) => {
+    const newState = {
+      ...state,
+      providers: [
+        ...state.providers.slice(0, providerIndex),
+        {
+          ...state.providers[providerIndex],
+          [field]: value,
+        },
+        ...state.providers.slice(providerIndex + 1),
+      ],
+    }
 
     return ({
-      ...state,
+      ...newState,
     })
   },
   [actions.addPosition]: (state, { providerIndex }) => {

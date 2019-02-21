@@ -1,7 +1,7 @@
 export const change = '@@vd/calculator/CHANGE'
 export const changeCost = '@@vd/calculator/CHANGE_COST'
 export const changeAmount = '@@vd/calculator/CHANGE_AMOUNT'
-export const changePercent = '@@vd/calculator/CHANGE_PERCENT'
+export const changeProvider = '@@vd/calculator/CHANGE_PROVIDER'
 export const addPosition = '@@vd/calculator/ADD_POSITION'
 export const removePosition = '@@vd/calculator/REMOVE_POSITION'
 export const addProvider = '@@vd/calculator/ADD_PROVIDER'
