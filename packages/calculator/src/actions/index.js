@@ -123,6 +123,12 @@ export const copyData = () => async (dispatch, getState) => {
   document.body.appendChild(textArea)
 
   textArea.select()
-  document.execCommand('copy')
+  if (itemsCost.toNumber() !== 0) {
+    document.execCommand('copy')
+  }
   document.body.removeChild(textArea)
 }
+
+export const clearData = () => ({
+  type: actions.clear,
+})
