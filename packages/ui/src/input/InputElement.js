@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react'
 import { StyleSheet } from 'elementum'
+import Mask from './Mask'
 
 const styles = StyleSheet.create({
   self: {
@@ -31,17 +32,30 @@ const InputElement = forwardRef(({
   value,
   onChange = () => {},
   readOnly,
+  mask,
   ...props
-}, ref) => (
-  <input
-    ref={ref}
-    className={styles()}
-    disabled={disabled}
-    readOnly={readOnly}
-    value={value}
-    onChange={disabled ? null : ({ target }) => onChange(target.value)}
-    {...props}
-  />
-))
+}, ref) => {
+  const handleChange = ({ target }) => {
+    if (mask === 'number') {
+      const number = target.value !== '' ? Number.parseInt(target.value, 10) : 0
+      onChange(number)
+    } else {
+      onChange(target.value)
+    }
+  }
+
+  return (
+    <Mask
+      ref={ref}
+      className={styles()}
+      disabled={disabled}
+      readOnly={readOnly}
+      value={value}
+      onChange={disabled ? null : handleChange}
+      mask={typeof mask === 'object' ? mask : undefined}
+      {...props}
+    />
+  )
+})
 
 export default InputElement

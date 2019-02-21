@@ -25,12 +25,20 @@ const Input = ({
   const [hovered, setHover] = useState(false)
 
   const onFocus = () => {
-    ref.current.focus()
+    if (ref.current.focus) {
+      ref.current.focus()
+    } else {
+      ref.current.inputElement.focus()
+    }
     setFocus(true)
   }
 
   const onBlur = () => {
-    ref.current.blur()
+    if (ref.current.focus) {
+      ref.current.blur()
+    } else {
+      ref.current.inputElement.blur()
+    }
     setFocus(false)
   }
 
