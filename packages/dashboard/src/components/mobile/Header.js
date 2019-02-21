@@ -3,11 +3,14 @@ import { injectIntl } from 'react-intl'
 import { Row, Layout } from 'flex-layouts'
 import { Block } from '@vd/ui/src/content'
 import { Logo } from '@vd/ui/src/logo'
-import { ReactSelect } from '@vd/ui/src/select'
 import { Ghost } from '@vd/ui/src/button'
 import { CopyIcon, MinusIcon, PlusIcon } from '@vd/ui/src/icons'
 
-const Header = () => (
+const Header = ({
+  onAddProvider,
+  onRemoveProvider,
+  onCopy,
+}) => (
   <Block>
     <Row
       align='center'
@@ -20,17 +23,14 @@ const Header = () => (
         />
       </Layout>
       <Layout basis='16px' />
-      <Layout basis='112px'>
-        <ReactSelect
-          value='Calculator'
-        />
-      </Layout>
+      <Layout grow={1} />
       <Layout basis='16px' />
       <Layout>
         <Ghost
           width='medium'
           height='medium'
           color='gray600'
+          onClick={onAddProvider}
         >
           <PlusIcon
             color='gray400'
@@ -43,6 +43,7 @@ const Header = () => (
           width='medium'
           height='medium'
           color='gray600'
+          onClick={onRemoveProvider}
         >
           <MinusIcon
             color='gray400'
@@ -55,6 +56,7 @@ const Header = () => (
           width='medium'
           height='medium'
           color='gray600'
+          onClick={onCopy}
         >
           <CopyIcon
             width={10}

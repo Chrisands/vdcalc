@@ -9,6 +9,7 @@ import { CopyIcon, MinusIcon, PlusIcon } from '@vd/ui/src/icons'
 const Header = ({
   onAddProvider,
   onRemoveProvider,
+  onCopy,
 }) => (
   <Block>
     <Row
@@ -56,6 +57,7 @@ const Header = ({
               width='medium'
               height='medium'
               color='gray600'
+              onClick={onCopy}
             >
               <CopyIcon
                 width={10}
