@@ -9,10 +9,10 @@ const styles = StyleSheet.create({
     transition: '0.2s',
     outline: 'none',
     width: '100%',
+    minWidth: '0',
 
     backgroundColor: 'transparent',
     border: 'none',
-
 
     fontFamily: 'Montserrat, sans-serif',
     fontSize: '14px',
@@ -52,6 +52,7 @@ const InputElement = forwardRef(({
       className={styles()}
       disabled={disabled}
       readOnly={readOnly}
+      tabIndex={readOnly || disabled ? '-1' : '1'}
       value={value}
       onChange={disabled ? null : handleChange}
       mask={typeof mask === 'object' ? mask : undefined}

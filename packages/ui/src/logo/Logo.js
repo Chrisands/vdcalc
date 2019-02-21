@@ -2,11 +2,12 @@
 import React from 'react'
 import Icon from '../icons/Icon'
 
-const Logo = ({ width, height }) => (
+const Logo = ({ width, height, ...props }) => (
   <Icon
     width={width}
     height={height}
     viewBox='0 0 100 100'
+    {...props}
   >
     <g stroke='none' strokeWidth='1' fill='none' fillRule='evenodd'>
       <g fillRule='nonzero'>

@@ -26,11 +26,13 @@ const Icon = ({
   fill = '#000000',
   children,
   viewBox,
+  ...props
 }) => (
   <svg
     fill={fill}
     viewBox={getViewBox(viewBox, originalWidth, originalHeight)}
     {...getSize(width, height, viewBox, getRatio(viewBox, originalWidth, originalHeight))}
+    {...props}
   >
     {children}
   </svg>
