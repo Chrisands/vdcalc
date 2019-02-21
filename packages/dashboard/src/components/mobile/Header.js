@@ -10,21 +10,23 @@ const Header = ({
   onAddProvider,
   onRemoveProvider,
   onCopy,
+  onClear,
 }) => (
   <Block>
     <Row
       align='center'
     >
-      <Layout basis='8px' />
+      <Layout basis='8pt' />
       <Layout>
         <Logo
           width={40}
           height={40}
+          onClick={onClear}
         />
       </Layout>
-      <Layout basis='16px' />
+      <Layout basis='16pt' />
       <Layout grow={1} />
-      <Layout basis='16px' />
+      <Layout basis='16pt' />
       <Layout>
         <Ghost
           width='medium'
@@ -37,7 +39,7 @@ const Header = ({
           />
         </Ghost>
       </Layout>
-      <Layout basis='8px' />
+      <Layout basis='8pt' />
       <Layout>
         <Ghost
           width='medium'
@@ -50,7 +52,7 @@ const Header = ({
           />
         </Ghost>
       </Layout>
-      <Layout basis='8px' />
+      <Layout basis='8pt' />
       <Layout>
         <Ghost
           width='medium'
@@ -65,7 +67,7 @@ const Header = ({
           />
         </Ghost>
       </Layout>
-      <Layout basis='16px' />
+      <Layout basis='16pt' />
     </Row>
   </Block>
 )

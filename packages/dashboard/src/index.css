@@ -13,19 +13,3 @@ body {
 #app {
   height: 100%;
 }
-
-.tether-element {
-  z-index: 999;
-}
-
-.react-datepicker-wrapper {
-  display: block;
-}
-
-.react-datepicker__input-container {
-  display: block;
-}
-
-.react-datepicker-popper {
-  z-index: 3;
-}
