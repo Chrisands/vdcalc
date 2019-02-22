@@ -8,7 +8,7 @@ import htmlTemplate from 'html-webpack-template'
 import HTMLWebpackPlugin from 'html-webpack-plugin'
 import CssResolvePlugin from 'elementum-tools/lib/webpack/css-resolve-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
-import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
+import TerserPlugin from 'terser-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
 
@@ -24,10 +24,9 @@ export const optimization = {
     },
   },
   minimizer: [
-    new UglifyJsPlugin({
+    new TerserPlugin({
       cache: true,
       parallel: true,
-      sourceMap: false,
     }),
     new OptimizeCSSAssetsPlugin(),
   ],
