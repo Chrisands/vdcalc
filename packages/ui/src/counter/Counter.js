@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Layout } from 'flex-layouts'
 import { StyleSheet } from 'elementum'
 import { Text } from '../text'
@@ -37,6 +37,12 @@ const Counter = ({
     setCounter(newValue)
     onChange(newValue)
   }
+
+  useEffect(() => {
+    if (value !== counter) {
+      setCounter(value)
+    }
+  }, [value])
 
   return (
     <div
